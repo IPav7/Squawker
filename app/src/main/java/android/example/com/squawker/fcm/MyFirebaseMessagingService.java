@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.example.com.squawker.MainActivity;
 import android.example.com.squawker.R;
 import android.example.com.squawker.provider.SquawkContract;
+import android.example.com.squawker.provider.SquawkProvider;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -85,6 +86,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 contentValues.put(SquawkContract.COLUMN_AUTHOR_KEY, data.get(JSON_KEY_AUTHOR_KEY));
                 contentValues.put(SquawkContract.COLUMN_MESSAGE, data.get(JSON_KEY_MESSAGE));
                 contentValues.put(SquawkContract.COLUMN_DATE, data.get(JSON_KEY_DATE));
+                getContentResolver().insert(SquawkProvider.SquawkMessages.CONTENT_URI, contentValues);
                 return null;
             }
         };
